@@ -1,18 +1,35 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+
 import PlaylistSkeleton from "@/skeletons/PlaylistSkeleton";
-import Playlistskeleton from "@/skeletons/PlaylistSkeleton";
+import { useMusicstore } from "@/stores/useMusicStore";
+
 import { SignedIn } from "@clerk/clerk-react";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { HomeIcon, Library, MessageCircle } from "lucide-react";
+import { Album, HomeIcon, Library, MessageCircle } from "lucide-react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const LeftSidebar = () => {
-  const isLoading = true;
+  const isLoading = false;
+
+  //data fetching for zustand
+
+const {albums, fetchAlbums, isLoading} = useMusicstore();
+
+useEffect(() => {
+  fetchAlbums()    
+}, [fetchAlbums]); 
+
+if
+
+console.log({ albums });
 
 
+  return (
 
-  return <div className="h-full flex flex-col gap-2">
+   <div className="h-full flex flex-col gap-2">
     {/**Navigation Menu */}
     <div className="rounded-lg bg-zinc-900 p-4">
         <div className="space-y-2">
@@ -58,7 +75,10 @@ const LeftSidebar = () => {
           {isLoading ? (
             <PlaylistSkeleton />
           ) : (
-            "Some music"
+             albums.map((album) => {
+              <Link to>
+              </Link>
+             })
           )}
 
         </div>
@@ -70,7 +90,9 @@ const LeftSidebar = () => {
     </div>
      
 
-  </div>;
+  </div>
+
+  );
   
 };
 
